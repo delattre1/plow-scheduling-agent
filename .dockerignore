@@ -1,0 +1,8 @@
+.git
+.env
+plow-credentials
+tools/
+**/__pycache__
+**/*.py[co]
+**/.pytest_cache
+

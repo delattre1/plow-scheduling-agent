@@ -1,0 +1,19 @@
+services:
+  agent:
+    build: .
+    # The currently published Plow base image is amd64-only.
+    platform: linux/amd64
+    environment:
+      AGENT_ID: ${AGENT_ID:-scheduling-agent}
+      # Inherit the official image defaults for Plow inference.
+    volumes:
+      # plow-agents mint writes this file with restrictive permissions. The
+      # image promotes it into the runtime credential path during boot.
+      - ./plow-credentials:/var/lib/plow/credentials.host:ro
+      # Keep sessions and Agent Index install identity between restarts.
+      - scheduling-agent-home:/var/lib/hermes
+    stop_grace_period: 35s
+    # No ports: the agent connects outbound to Plow Chat.
+
+volumes:
+  scheduling-agent-home:
