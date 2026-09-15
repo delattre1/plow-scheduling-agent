@@ -1,0 +1,13 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+plow-credentials
+compose.override.yml
+tools/plow-agents/
+**/__pycache__/
+**/*.py[cod]
+**/.pytest_cache/
+
