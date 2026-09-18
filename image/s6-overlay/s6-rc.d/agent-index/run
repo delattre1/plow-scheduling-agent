@@ -1,5 +1,5 @@
 #!/bin/sh
-# Report this agent's usage hourly. Registration is intentionally manual.
+# Report this agent's usage every 5 minutes. Registration is intentionally manual.
 PATH=/command:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 export PATH
 AGENT_ID=$(cat /run/s6/container_environment/AGENT_ID 2>/dev/null || true)
@@ -30,5 +30,5 @@ while :; do
       || echo "agent-index: reporter exited non-zero" >&2
   fi
 
-  /bin/sleep 3600
+  /bin/sleep 300
 done
