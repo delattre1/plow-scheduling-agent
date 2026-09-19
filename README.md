@@ -34,16 +34,15 @@ specialized scheduling behavior remains intentionally unimplemented.
 - `runtime/persona.md`: Scheduling Agent's minimal identity and capability boundary.
 - `docs/SAM_SCHEDULING_AGENT_BRAINSTORM.md`: Sam's future-architecture brainstorm.
 - `docs/INSTALL.md`: minimal local installation and verification.
-- `image/`, `Dockerfile`, `compose.yml`: Plow Hermes packaging and Agent Index reporting.
+- `Dockerfile`, `compose.yml`: Plow Hermes packaging.
 
 There is deliberately no repository-owned `skills/` directory.
 
 ## Agent Index
 
-The image includes the pinned official Agent Index reporting client. The
-background reporter does not publish an unregistered agent automatically. The
-repository owner registers `scheduling-agent` explicitly after validating the
-skeleton; subsequent runs report usage under that identity.
+The Plow base image ships the official Agent Index reporter and client; this
+repository carries no copy. Every install reports usage under
+`scheduling-agent`, the `AGENT_ID` in `compose.yml`.
 
 ## License
 

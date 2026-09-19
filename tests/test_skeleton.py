@@ -28,12 +28,10 @@ class SkeletonTests(unittest.TestCase):
         self.assertIn("platform: linux/amd64", compose)
         self.assertIn("scheduling-agent-home:/var/lib/hermes", compose)
 
-    def test_reporter_never_registers_implicitly(self) -> None:
-        reporter = (
-            ROOT / "image/s6-overlay/s6-rc.d/agent-index/run"
-        ).read_text()
-        self.assertNotIn("--register", reporter)
-        self.assertIn("not registered; reporting is standing down", reporter)
+    def test_usage_reporter_comes_from_the_base_image(self) -> None:
+        self.assertFalse((ROOT / "image/s6-overlay/s6-rc.d/agent-index").exists())
+        self.assertFalse((ROOT / "vendor/client.pin").exists())
+        self.assertNotIn("vendor/client.pin", (ROOT / "Dockerfile").read_text())
 
     def test_sam_brainstorm_is_preserved_verbatim(self) -> None:
         document = (
